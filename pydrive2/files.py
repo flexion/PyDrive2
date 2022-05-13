@@ -804,7 +804,7 @@ class GoogleDriveFile(ApiAttributeMixin, ApiResource):
         try:
             self.auth.service.permissions().delete(
                 fileId=file_id, permissionId=permission_id, supportsAllDrives=True
-            ).execute()
+            ).execute(http=self.http)
         except errors.HttpError as error:
             raise ApiRequestError(error)
         else:
